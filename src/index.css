@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  border: none !important;
+}
+
+.ant-select-focused:where(.css-dev-only-do-not-override-1okl62o).ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector {
+  box-shadow: none;
+}
+
+.app-menu > div > .ant-select-selection-item {
+ font-weight: 500;
+}
+
+:where(.css-dev-only-do-not-override-1okl62o).ant-collapse>.ant-collapse-item >.ant-collapse-header .ant-collapse-header-text {
+  font-weight: 700;
+  line-height: 24px;
+  font-size: 16px;
+  color: #595959;
+}
+
+ .ant-tabs-ink-bar {
+  height: 5px;
+  background: #6E27D5 !important;
+}
