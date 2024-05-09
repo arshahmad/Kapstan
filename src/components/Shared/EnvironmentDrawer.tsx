@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Drawer, Button, Input, message, Upload } from "antd";
-import {
-  UploadOutlined,
-  PlusOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
 
 interface EnvironmentVariable {
   name: string;

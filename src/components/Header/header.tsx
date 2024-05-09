@@ -30,6 +30,7 @@ const Header: React.FC<Props> = ({ setApplicationName, applications }) => {
 
   useEffect(() => {
     setApplicationName("Tic tac toe");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -54,7 +55,9 @@ const Header: React.FC<Props> = ({ setApplicationName, applications }) => {
           className="app-menu h-5"
         >
           {applications.map((application: Application) => {
-            return <Option value={application?.name}>{application?.name}</Option>;
+            return (
+              <Option value={application?.name}>{application?.name}</Option>
+            );
           })}
         </Select>
       </div>

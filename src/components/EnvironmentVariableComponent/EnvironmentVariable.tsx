@@ -8,13 +8,13 @@ import {
 } from "@ant-design/icons";
 import EnvironmentDrawer from "../Shared/EnvironmentDrawer";
 
-interface EnvironmentVariable {
+interface EnvironmentVariableType {
   name: string;
   value: string;
 }
 
 interface Props {
-  variables: EnvironmentVariable[];
+  variables: EnvironmentVariableType[];
   onRemove: (name: string) => void;
 }
 
@@ -52,7 +52,7 @@ const EnvironmentVariable: React.FC<Props> = ({ variables, onRemove }) => {
     >
       {variables.length > 0 ? (
         <div className="max-w-sm">
-          {variables.map((variable: EnvironmentVariable, index: number) => (
+          {variables.map((variable: EnvironmentVariableType, index: number) => (
             <div
               key={index}
               className="flex text-sm leading-5 font-medium text-[#595959] items-center justify-between border rounded-md border-gray-200 p-2 mb-2"

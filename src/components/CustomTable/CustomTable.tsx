@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Tag, Button } from "antd";
+import { Table, Button } from "antd";
 
 interface Column {
   title: string;
