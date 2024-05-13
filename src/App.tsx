@@ -16,7 +16,13 @@ import { MemoryUtilization } from "./models/MemoryUtilization";
 import { CPUUtilization } from "./models/CPUUtilization";
 import { EventHistory } from "./models/EventHistory";
 import { apiService } from "./services/ApiService";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  Navigate,
+} from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
@@ -235,6 +241,7 @@ const App = () => {
                   </div>
                 }
               />
+              <Route path="*" element={<Navigate to="/applications" />} />
             </Routes>
           </Content>
         </Layout>
