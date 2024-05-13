@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Layout, Menu } from "antd";
+import { Empty, Layout, Menu } from "antd";
 import {
   AppstoreOutlined,
   DollarCircleOutlined,
@@ -16,6 +16,7 @@ import { MemoryUtilization } from "./models/MemoryUtilization";
 import { CPUUtilization } from "./models/CPUUtilization";
 import { EventHistory } from "./models/EventHistory";
 import { apiService } from "./services/ApiService";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
@@ -53,143 +54,192 @@ const App = () => {
   }, []);
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sider
-        style={{
-          background: "#37146B",
-        }}
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-      >
-        <div className="text-white text-3xl pt-4 pr-4 pb-4 pl-6">
-          <TaobaoCircleOutlined />
-          {!collapsed && <span className="font-bold ml-2">Kapstan</span>}
-        </div>
-        <div className="flex flex-col justify-between h-[90%]">
-          <div>
-            <Menu
-              style={{
-                background: "#37146B",
-                padding: "8px 16px 12px 16px",
-              }}
-              theme="dark"
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              selectedKeys={selectedKeys}
-              onClick={handleMenuClick}
-            >
-              <Menu.Item
-                key="1"
-                icon={<AppstoreOutlined />}
-                style={{
-                  backgroundColor:
-                    selectedKeys[0] === "1" ? "#4D1B95" : "transparent",
-                }}
-              >
-                Applications
-              </Menu.Item>
-              <Menu.Item
-                key="2"
-                icon={<LinkOutlined />}
-                style={{
-                  backgroundColor:
-                    selectedKeys[0] === "2" ? "#4D1B95" : "transparent",
-                }}
-              >
-                Connections
-              </Menu.Item>
-              <Menu.Item
-                key="3"
-                icon={<DollarCircleOutlined />}
-                style={{
-                  backgroundColor:
-                    selectedKeys[0] === "3" ? "#4D1B95" : "transparent",
-                }}
-              >
-                Cost
-              </Menu.Item>
-              <Menu.Item
-                key="4"
-                icon={<SafetyOutlined />}
-                style={{
-                  backgroundColor:
-                    selectedKeys[0] === "4" ? "#4D1B95" : "transparent",
-                }}
-              >
-                Security{" "}
-                <span className="bg-[#6E27D5] text-white px-2 py-1 ml-1 rounded-sm text-[10px] text-center">
-                  Beta
-                </span>
-              </Menu.Item>
-            </Menu>
+    <Router>
+      <Layout style={{ minHeight: "100vh" }}>
+        <Sider
+          style={{
+            background: "#37146B",
+          }}
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+        >
+          <div className="text-white text-3xl pt-4 pr-4 pb-4 pl-6">
+            <TaobaoCircleOutlined />
+            {!collapsed && <span className="font-bold ml-2">Kapstan</span>}
           </div>
-          <div>
-            <Menu
-              style={{
-                background: "#37146B",
-                padding: "8px 16px 12px 16px",
-              }}
-              theme="dark"
-              mode="inline"
-              selectedKeys={selectedKeys}
-              onClick={handleMenuClick}
-            >
-              <Menu.Item
-                key="5"
-                icon={<DollarCircleOutlined />}
+          <div className="flex flex-col justify-between h-[90%]">
+            <div>
+              <Menu
                 style={{
-                  backgroundColor:
-                    selectedKeys[0] === "5" ? "#4D1B95" : "transparent",
+                  background: "#37146B",
+                  padding: "8px 16px 12px 16px",
                 }}
+                theme="dark"
+                mode="inline"
+                defaultSelectedKeys={["1"]}
+                selectedKeys={selectedKeys}
+                onClick={handleMenuClick}
               >
-                Admin
-              </Menu.Item>
-              <Menu.Item
-                key="6"
-                icon={<SafetyOutlined />}
+                <Menu.Item
+                  key="1"
+                  icon={<AppstoreOutlined />}
+                  style={{
+                    backgroundColor:
+                      selectedKeys[0] === "1" ? "#4D1B95" : "transparent",
+                  }}
+                >
+                  <Link to="/applications">Applications</Link>
+                </Menu.Item>
+                <Menu.Item
+                  key="2"
+                  icon={<LinkOutlined />}
+                  style={{
+                    backgroundColor:
+                      selectedKeys[0] === "2" ? "#4D1B95" : "transparent",
+                  }}
+                >
+                  <Link to="/connections">Connections</Link>
+                </Menu.Item>
+                <Menu.Item
+                  key="3"
+                  icon={<DollarCircleOutlined />}
+                  style={{
+                    backgroundColor:
+                      selectedKeys[0] === "3" ? "#4D1B95" : "transparent",
+                  }}
+                >
+                  <Link to="/cost">Cost</Link>
+                </Menu.Item>
+                <Menu.Item
+                  key="4"
+                  icon={<SafetyOutlined />}
+                  style={{
+                    backgroundColor:
+                      selectedKeys[0] === "4" ? "#4D1B95" : "transparent",
+                  }}
+                >
+                  <Link to="/security">Security</Link>{" "}
+                  <span className="bg-[#6E27D5] text-white px-2 py-1 ml-1 rounded-sm text-[10px] text-center">
+                    Beta
+                  </span>
+                </Menu.Item>
+              </Menu>
+            </div>
+            <div>
+              <Menu
                 style={{
-                  backgroundColor:
-                    selectedKeys[0] === "6" ? "#4D1B95" : "transparent",
+                  background: "#37146B",
+                  padding: "8px 16px 12px 16px",
                 }}
+                theme="dark"
+                mode="inline"
+                selectedKeys={selectedKeys}
+                onClick={handleMenuClick}
               >
-                Docs
-              </Menu.Item>
-            </Menu>
-            <div className={`flex py-4 pr-8 ${collapsed ? "pl-8" : "pl-11"}`}>
-              {collapsed ? (
-                <DoubleRightOutlined
-                  className="trigger text-white"
-                  onClick={toggleCollapsed}
-                />
-              ) : (
-                <DoubleLeftOutlined
-                  className="trigger text-white"
-                  onClick={toggleCollapsed}
-                />
-              )}
+                <Menu.Item
+                  key="5"
+                  icon={<DollarCircleOutlined />}
+                  style={{
+                    backgroundColor:
+                      selectedKeys[0] === "5" ? "#4D1B95" : "transparent",
+                  }}
+                >
+                  <Link to="/admin">Admin</Link>
+                </Menu.Item>
+                <Menu.Item
+                  key="6"
+                  icon={<SafetyOutlined />}
+                  style={{
+                    backgroundColor:
+                      selectedKeys[0] === "6" ? "#4D1B95" : "transparent",
+                  }}
+                >
+                  <Link to="/docs">Docs</Link>
+                </Menu.Item>
+              </Menu>
+              <div className={`flex py-4 pr-8 ${collapsed ? "pl-8" : "pl-11"}`}>
+                {collapsed ? (
+                  <DoubleRightOutlined
+                    className="trigger text-white"
+                    onClick={toggleCollapsed}
+                  />
+                ) : (
+                  <DoubleLeftOutlined
+                    className="trigger text-white"
+                    onClick={toggleCollapsed}
+                  />
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </Sider>
-      <Layout>
-        <Header className=" bg-white p-0">
-          <HeaderContent
-            setApplicationName={(name: string) => setApplicationName(name)}
-            applications={applications}
-          ></HeaderContent>
-        </Header>
-        <Content className="my-0 mx-4">
-          <ContentContainer
-            applicationName={applicationName}
-            applications={applications}
-            memoryUtilization={memoryUtilization}
-            cpuUtilization={cpuUtilization}
-            eventHistory={eventHistory}
-          />
-        </Content>
+        </Sider>
+        <Layout>
+          <Header className=" bg-white p-0">
+            <HeaderContent
+              setApplicationName={(name: string) => setApplicationName(name)}
+              applications={applications}
+            ></HeaderContent>
+          </Header>
+          <Content className="my-0 mx-4">
+            <Routes>
+              <Route
+                path="/applications"
+                element={
+                  <ContentContainer
+                    applicationName={applicationName}
+                    applications={applications}
+                    memoryUtilization={memoryUtilization}
+                    cpuUtilization={cpuUtilization}
+                    eventHistory={eventHistory}
+                  />
+                }
+              />
+              <Route
+                path="/connections"
+                element={
+                  <div className="h-full w-full flex items-center justify-center">
+                    <Empty />
+                  </div>
+                }
+              />
+              <Route
+                path="/cost"
+                element={
+                  <div className="h-full w-full flex items-center justify-center">
+                    <Empty />
+                  </div>
+                }
+              />
+              <Route
+                path="/security"
+                element={
+                  <div className="h-full w-full flex items-center justify-center">
+                    <Empty />
+                  </div>
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <div className="h-full w-full flex items-center justify-center">
+                    <Empty />
+                  </div>
+                }
+              />
+              <Route
+                path="/docs"
+                element={
+                  <div className="h-full w-full flex items-center justify-center">
+                    <Empty />
+                  </div>
+                }
+              />
+            </Routes>
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
+    </Router>
   );
 };
 
